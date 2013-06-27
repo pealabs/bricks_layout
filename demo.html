@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"content="width=device-width, height=device-height, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0, user-scalable=no" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<link rel=stylesheet href="style.css" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="jquery.brick.js"></script>
+<script>
+$(document).ready(function() 
+{
+	//최초 한번만 실행
+	create({
+		width:240
+		,column:0
+	});
+})
+function makeTextBrick(){
+var color = Math.floor(Math.random() * 999999) + 000000;
+var text_brick = '<div class="text_brick">'
+				 +'<div class="brick_head_text" style="border: 1px solid #'+color+';background:#'+color+';">"THE<br/>Jquery<br/>Bricks<br/>Library"</div>'
+				 +'<div class="brick_deco" style="border-left:20px solid #'+color+'; "></div>'
+				 +'<div style="clear:both;"></div>'
+				 +'<div class="brick_body"><div class="author">author</div><div class="desc">description</div></div>'
+				 +'</div>';
+	return text_brick;
+}
+
+function appendBricksDummy()
+{
+
+		///////////임시//////////////
+		var id = Math.floor(Math.random() * 100000) + 1;
+		var bh = Math.floor(Math.random() * 300) + 200;
+		var color = Math.floor(Math.random() * 900000) + 100000;
+		bricks[bricks.length] = {id:id,html:'<div onclick="delBrick(\''+id+'\')" style="background:#'+color+'; height:'+bh+'px;"></div>'};
+		/////////////////////////////
+
+		appendBrick();
+}
+
+
+</script>
+</head>
+<body>
+<div onclick="appendBricksDummy();" style="height:'+bh+'px;">append</div>
+<div class="wrap">
+<div class="masonry"></div>
+</div>
+
+</body>
+</html>
