@@ -5,7 +5,7 @@
 <meta name="viewport"content="width=device-width, height=device-height, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0, user-scalable=no" />
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
-<link rel=stylesheet href="style.css" type="text/css">
+<link rel=stylesheet href="main.css" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script src="jquery.brick.js"></script>
 <script>
@@ -18,24 +18,80 @@ $(document).ready(function()
 	});
 })
 function makeTextBrick(){
-var color = Math.floor(Math.random() * 999999) + 000000;
-var text_brick = '<div class="text_brick">'
-				 +'<div class="brick_head_text" style="border: 1px solid #'+color+';background:#'+color+';">"THE<br/>Jquery<br/>Bricks<br/>Library"</div>'
-				 +'<div class="brick_deco" style="border-left:20px solid #'+color+'; "></div>'
-				 +'<div style="clear:both;"></div>'
-				 +'<div class="brick_body"><div class="author">author</div><div class="desc">description</div></div>'
-				 +'</div>';
+var select = Math.floor(Math.random() * 4) + 1;
+var color = '';
+if(select==1){color='brown';}
+if(select==2){color='green';}
+if(select==3){color='orange';}
+if(select==4){color='yellow';}
+var text_brick ='<div class="Wrap">'
+				+'<div class="'+color+'C">'
+				+'<h2>HEALTHY<br />LIVING<br />TRUTHHEALTHY<br />LIVING<br />TRUTH</h2>'
+				+'</div>'
+				+'<div class="'+color+'A">'
+				+'<img src="images/greenA.png">'
+				+'</div>'
+				+'<div class="color_T '+color+'T">'
+				+'<h3>EXPLORE</h3>'
+				+'<h4>greymouth</h4>'
+				+'<span class="go btn"><img src="images/btn_go.png"></span>'
+				+'</div>'
+				+'</div>';
 	return text_brick;
 }
+function makeImageBrick(){
+var select = Math.floor(Math.random() * 10) + 1;
+var img = '';
+if(select==1){img='1';}
+if(select==2){img='2';}
+if(select==3){img='3';}
+if(select==4){img='4';}
+if(select==5){img='5';}
+if(select==6){img='6';}
+if(select==7){img='7';}
+if(select==8){img='8';}
+if(select==9){img='9';}
+if(select==10){img='10';}
+var image_brick ='<div class="Wrap">'
+				+'<div class="img_C">'
+				+'<img src="images/'+img+'.jpg">'
+				+'</div>'
+				+'<div class="img_T">'
+				+'<h3>EXPLORE</h3>'
+				+'<h4>greymouthgreymouthgreymouthgreymouthgreymouthgreymou</h4>'
+				+'</div>'
+				+'</div>';
+
+	return image_brick;
+}
+function makeLinkBrick(){
+var color = Math.floor(Math.random() * 999999) + 100000;
+var link_brick ='<div class="Wrap">'
+				+'<div class="go_T" style="background:#'+color+'">'
+				+'<h3>EXPLORE</h3>'
+				+'<h4>greymouth</h4>'
+				+'<span class="go btn"><img src="images/btn_go.png"></span>'
+				+'</div>'
+				+'</div>';
+
+
+	return link_brick;
+}
+
 
 function appendBricksDummy()
 {
 
 		///////////임시//////////////
+		var select = Math.floor(Math.random() * 3) + 1;
 		var id = Math.floor(Math.random() * 100000) + 1;
 		var bh = Math.floor(Math.random() * 300) + 200;
 		var color = Math.floor(Math.random() * 900000) + 100000;
-		bricks[bricks.length] = {id:id,html:'<div onclick="delBrick(\''+id+'\')" style="background:#'+color+'; height:'+bh+'px;"></div>'};
+		//bricks[bricks.length] = {id:id,html:'<div onclick="delBrick(\''+id+'\')" style="background:#'+color+'; height:'+bh+'px;">'+makeTextBrick()+'</div>'};
+		
+		if(select==1){bricks[bricks.length] = {id:id,html:'<div onclick="delBrick(\''+id+'\')">'+makeTextBrick()+'</div>'};}
+		if(select==2){bricks[bricks.length] = {id:id,html:'<div onclick="delBrick(\''+id+'\')">'+makeImageBrick()+'</div>'};}
+		if(select==3){bricks[bricks.length] = {id:id,html:'<div onclick="delBrick(\''+id+'\')">'+makeLinkBrick()+'</div>'};}
 		/////////////////////////////
 
 		appendBrick();

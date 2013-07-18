@@ -1,0 +1,63 @@
+@charset "utf-8";
+
+* {margin:0; padding:0;}
+body {background:#fff;-webkit-user-select:none;-webkit-text-size-adjust:none;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,select,textarea,p,blockquote,th,td,legend,button{margin:0;padding:0;}
+
+
+/* Common */
+html, body {height: 100%; }
+img, fieldset	{ border:0; }
+img, input, select, textarea	{vertical-align:middle;}
+input,textarea:focus { outline:none;}
+ul, li { list-style-type:none; }
+a { color:inherit;text-decoration:none; text-overflow:ellipsis; -o-text-overflow:ellipsis; }
+a:hover	{ text-decoration:none; }
+.Wrap{padding:5px; border:1px solid #eee; margin:3px;}
+.Wrap h2, .Wrap h3, .Wrap h4{word-wrap: break-word;white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;word-break:break-all;}
+
+
+/*컬러레이어*/
+.color_T{padding:10px 40px 0 0; position:relative;}
+.color_T .btn{position:absolute; right:0; top:10px;}
+.greenC{padding:20px; color:#fff; font-size:15px; background:#acc93d;position:relative;}
+.greenA{vertical-align:top;width:50px; margin:-8px auto 0 ;text-align:center;}
+.greenT h3{color:#93b417; font-size:14px;}
+.greenT h4{color:#494949; font-size:12px; font-weight:normal;}
+
+.orangeC{padding:20px; color:#fff; font-size:15px; background:#f37b24;position:relative;}
+.orangeA{vertical-align:top;width:50px; margin:-8px auto 0 ;text-align:center;}
+.orangeT h3{color:#f37b24; font-size:14px;}
+.orangeT h4{color:#494949; font-size:12px; font-weight:normal;}
+
+.yellowC{padding:20px; color:#fff; font-size:15px; background:#f37b24;position:relative;}
+.yellowA{vertical-align:top;width:50px; margin:-8px auto 0 ;text-align:center;}
+.yellowT h3{color:#f37b24; font-size:14px;}
+.yellowT h4{color:#494949; font-size:12px; font-weight:normal;}
+
+.brownC{padding:20px; color:#fff; font-size:15px; background:#83766d;position:relative;}
+.brownA{vertical-align:top;width:50px; margin:-8px auto 0 ;text-align:center;}
+.brownT h3{color:#83766d; font-size:14px;}
+.brownT h4{color:#494949; font-size:12px; font-weight:normal;}
+
+.yellowC{padding:20px; color:#fff; font-size:15px; background:#ffd334;position:relative;}
+.yellowA{vertical-align:top;width:50px; margin:-8px auto 0 ;text-align:center;}
+.yellowT h3{color:#ffd334; font-size:14px;}
+.yellowT h4{color:#494949; font-size:12px; font-weight:normal;}
+
+
+/*이미지레이어*/
+.img_C img{width:100%;}
+.img_T{padding:10px 0; position:relative;}
+.img_T h4{font-size:12px; font-weight:normal;}
+
+/*바로가기레이어*/
+.go_T{background:#ebebeb;color:#ffffff;padding:20px 60px 20px 20px; position:relative;}
+.go_T h4{font-size:12px; font-weight:normal;}
+.go_T .btn{position:absolute; right:20px; top:20px;}
+.go img{width:32px; heigth:32px;}
+
+/*지울부분*/
+.test li{float:left; width:33%;*zoom:1}
+.test li:first-child{width:34%}
+.test li:after{content:''; display:block; clear:both}
