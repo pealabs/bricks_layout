@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" 
+    content="width=device-width, initial-scale=1.0, 
+    maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400|Fredoka+One|Comfortaa:300|Metrophobic" rel="stylesheet" type="text/css">
+<script src="jquery.brick.js"></script>
+<script src="jquery.slide.js"></script>
+<style>
+html,body {margin:0px; padding:0px; background:#F4F4F4; overflow-y: scroll; overflow-x: hidden;  -webkit-text-size-adjust: none;}
+
+/* button 
+---------------------------------------------- */
+.button {display: inline-block;zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */*display: inline;vertical-align: baseline;margin: 0 2px;outline: none;cursor: pointer;text-align: center;text-decoration: none;font: 12px/100% Metrophobic, verdana, arial, sans-serif;padding: .5em 2em .55em;}
+.button:hover {text-decoration: none;}
+.button:active {position: relative;top: 1px;}
+
+.large {font-size: 12px;padding: .8em 2em .8em;}
+.medium {font-size: 12px;padding: .4em 1.5em .42em;}
+.small {font-size: 11px;padding: .2em 1em .275em;}
+
+/* color styles 
+---------------------------------------------- */
+
+/* black */
+.black {color: #d7d7d7;border: solid 1px #333;background: #333;}
+.black:hover {background: #000;}
+.black:active {color: #666;}
+
+/* gray */
+.gray {color: #e9e9e9;border: solid 1px #555;background: #6e6e6e;}
+.gray:hover {background: #616161;}
+.gray:active {color: #afafaf;}
+
+/* white */
+.white {color: #606060;border: solid 1px #b7b7b7;background: #fff;}
+.white:hover {background: #ededed;}
+.white:active {color: #999;}
+
+/* orange */
+.orange {color: #fef4e9;border: solid 1px #da7c0c;background: #f78d1d;}
+.orange:hover {background: #f47c20;}
+.orange:active {color: #fcd3a5;}
+
+/* red */
+.red {color: #faddde;border: solid 1px #980c10;background: #d81b21;}
+.red:hover {background: #b61318;}
+.red:active {color: #de898c;}
+
+/* blue */
+.blue {color: #d9eef7;border: solid 1px #0076a3;background: #0095cd;}
+.blue:hover {background: #007ead;}
+.blue:active {color: #80bed6;}
+
+/* rosy */
+.rosy {color: #fae7e9;border: solid 1px #b73948;background: #da5867;}
+.rosy:hover {background: #ba4b58;}
+.rosy:active {color: #dca4ab;}
+
+/* green */
+.green {color: #e8f0de;border: solid 1px #538312;background: #64991e;}
+.green:hover {background: #538018;}
+.green:active {color: #a9c08c;}
+
+/* pink */
+.pink {color: #feeef5;border: solid 1px #d2729e;background: #f895c2;}
+.pink:hover {background: #d57ea5;}
+.pink:active {color: #f3c3d9;}
+
+/* layout 
+---------------------------------------------- */
+.leftSide {overflow: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch;  display:none; float:left; position:absolute; top:0px; left:0px; width:200px; height:100%; z-index:7; background:#444;}
+.rightSide {overflow: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; display:none; float:left; position:absolute; top:0px; right:0px; width:200px; height:100%; z-index:8; background:#444;}
+.wrap {float:left; position:absolute; top:0px; left:0px; width:100%; z-index:9; -webkit-box-shadow: -10px 0 5px -5px #222, 10px 0px 5px -5px #222;}
+
+/* in wrap
+---------------------------------------------- */
+.header { text-align:center; color:#fff; line-height: 40px; background: #0095cd; }
+/*.scrollArea { width: 100%; overflow: scroll; overflow-x: hidden; -webkit-overflow-scrolling: touch; background: #F4F4F4; }*/
+.scrollArea { width: 100%; height: 100%; background: #F4F4F4; }
+.footer { text-align:center; color:#999; line-height: 100px; font-size:9px; background: #ededed;}
+
+/* header button
+---------------------------------------------- */
+/*.leftBtn:before { content: "";  position: absolute; top: 1em; left: 1.0em; width: 1em; height: 0.125em; border-top: 0.375em double #fff; border-bottom: 0.125em solid #fff;}*/
+/*.rightBtn:before { content: ""; position: absolute; top: 1em; right: 1.0em; width: 1em; height: 0.125em; border-top: 0.375em double #fff; border-bottom: 0.125em solid #fff;}*/
+.leftBtn { position: absolute; top: 0.75em; left: 1.0em; display:inline-block; width:16px; height:16px; background:url('images/icon/w/png/align_just_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.rightBtn { position: absolute; top: 0.75em; right: 1.0em; display:inline-block; width:16px; height:16px; background:url('images/icon/w/png/push_pin_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.leftBtnArea { position: absolute; top: 0em; left: 0em; width: 3em; height: 2.30em;}
+.rightBtnArea { position: absolute; top: 0em; right: 0em; width: 3em; height: 2.30em;}
+
+.logo {text-align:center; color:#fff; font-family: 'Fredoka One', cursive; font-size:25px; }
+.logo img {vertical-align:middle; width:30px; margin-left:10px;}
+
+/* slide menu
+---------------------------------------------- */
+ul{list-style:none; margin:0; padding:0; font-size:12px; font-family: 'Metrophobic', sans-serif;}
+ul li{color:#999; list-style:none; padding:10px; border-bottom:1px solid #000; border-top:1px solid #999;}
+ul li:hover{background-color:#333;color:#eee;}
+
+/* icons
+---------------------------------------------- */
+.icon-like {display:inline-block; width:16px; height:16px; background:url('images/icon-shot-like.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-views {display:inline-block; width:16px; height:16px; background:url('images/icon-views.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-shot-bucket {display:inline-block; width:16px; height:16px; background:url('images/icon-shot-bucket.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-comments {display:inline-block; width:16px; height:16px; background:url('images/icon-comments.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+
+/* search
+---------------------------------------------- */
+#search {}
+#search input[type="text"] {background: url(images/search-dark.png) no-repeat 10px 6px #444;border: 0 none;font: bold 12px Metrophobic, verdana, arial, sans-serif;color: #777;width: 120px;padding: 6px 15px 6px 35px;-webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset; /* -webkit-transition: all 0.7s ease 0s; -moz-transition: all 0.7s ease 0s;-o-transition: all 0.7s ease 0s;transition: all 0.7s ease 0s;*/}
+#search input[type="text"]:focus {/* width: 150px; */}
+
+</style>
+<script>
+$(document).ready(function() 
+{
+	initMasonry();	
+	initButtons();
+	initFunctionButtons();
+})
+
+var sleep = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
+
+var isMobile = false;
+function initMasonry()
+{
+	$('.scrollArea').css('height',$(window).innerHeight());
+	$(window).resize(function() {
+		sleep(function(){
+			$('.scrollArea').css('height',$(window).innerHeight());
+		}, 100);
+	});	
+
+	var mobileKeyWords = new Array('iPhone', 'iPod', 'BlackBerry', 'Android', 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson');
+	for (var word in mobileKeyWords){
+		if (navigator.userAgent.match(mobileKeyWords[word]) != null){
+			isMobile = true;
+			break;
+		}
+	}
+
+	if(isMobile){
+		//최초 한번만 실행
+		create({
+			width:0
+			,column:2
+		});
+	}else{
+		var w = 250;
+		//최초 한번만 실행
+		create({
+			width:w
+			,column:0
+		});
+	}
+}
+
+function initButtons()
+{
+
+	$('.leftSide').bind('touchstart',function(event){touchstart(this, event);});
+	$('.leftSide').bind('touchend',function(event){touchend(event);});
+	$('.rightSide').bind('touchstart',function(event){touchstart(this, event);});
+	$('.rightSide').bind('touchend',function(event){touchend(event);});
+	$('.wrap').bind('touchstart',function(event){touchstart(this, event);});
+	$('.wrap').bind('touchend',function(event){touchend(event);});
+	
+
+	$('.leftBtnArea').on('click',function() {
+		var curPos = $('.wrap').cssNumber('left');
+		var leftVal = 200;
+		if(curPos!=0){
+			leftVal=0;
+			$('.leftSide').unbind('touchmove.left');
+			$('.wrap').unbind('touchmove.leftWrap');
+		}
+		else{
+			$('.leftSide').show();
+			$('.leftSide').bind('touchmove.left',function(event){touchmove(this,event);});
+			$('.wrap').bind('touchmove.leftWrap',function(event){touchmove(this,event);});
+		}
+		$('.rightSide').hide();
+		$('.wrap').animate({
+			left:leftVal
+		}, 300, function() {
+			if(curPos!=0){$('.leftSide').hide();}
+			else{$('.leftSide').show();}
+		});
+	});
+	
+	$('.rightBtnArea').on('click',function() {
+		var curPos = $('.wrap').cssNumber('left');
+		var rightVal = 200;
+		if(curPos!=0){
+			rightVal=0;
+			$('.rightSide').unbind('touchmove.right');
+			$('.wrap').unbind('touchmove.rightWrap');
+		}
+		else{
+			$('.rightSide').show();
+			$('.rightSide').bind('touchmove.right',function(event){touchmove(this,event);});
+			$('.wrap').bind('touchmove.rightWrap',function(event){touchmove(this,event);});
+		}
+		$('.leftSide').hide();
+		$('.wrap').animate({
+			left:'-'+rightVal
+		}, 300, function() {
+			if(curPos!=0){$('.rightSide').hide();}
+			else{$('.rightSide').show();}
+		});
+	});
+	
+	$('.LB').on('click',function() {
+		var leftVal=0;
+		$('.leftSide').unbind('touchmove.left');
+		$('.wrap').unbind('touchmove.leftWrap');
+		$('.rightSide').hide();
+		$('.wrap').animate({
+			left:leftVal
+		}, 300, function() {
+			$('.leftSide').hide();
+		});
+	});
+	$('.RB').on('click',function() {
+		var rightVal=0;
+		$('.rightSide').unbind('touchmove.right');
+		$('.wrap').unbind('touchmove.rightWrap');
+		$('.leftSide').hide();
+		$('.wrap').animate({
+			left:'-'+rightVal
+		}, 300, function() {
+			$('.rightSide').hide();
+		});
+	});
+}
+var stx = 0;
+var sty = 0;
+var isMouseDown = false;
+function touchstart(el, event)
+{
+	isMouseDown = true;
+	//event.preventDefault();
+	var e = event.originalEvent;
+	stx = e.pageX || e.targetTouches[0].pageX;
+	sty = e.pageY || e.targetTouches[0].pageY;
+	sty = $(el).scrollTop()+sty;
+}
+function touchmove(el,event)
+{
+	if(isMouseDown)
+	{
+		event.preventDefault();
+		var e = event.originalEvent;
+		mtx = e.pageX || e.targetTouches[0].pageX;
+		mty = e.pageY || e.targetTouches[0].pageY;
+		$(el).scrollTop(Number(sty-mty));
+	}
+}
+function touchend(event)
+{
+	//event.preventDefault();
+	var e = event.originalEvent;
+	etx = e.pageX || e.changedTouches[0].pageX;
+	ety = e.pageY || e.changedTouches[0].pageY;
+	isMouseDown = false;
+
+}
+function initFunctionButtons()
+{
+	$('#newLingu').on('click',function() {
+		var id = Math.floor(Math.random() * 100000) + 1;	
+	    var content = '<div onclick="delBrick(\''+id+'\')" style="height:200px;border:1px solid #eee; background:#fff; margin:2px;>'
+					   +'<span class="icon-views"></span>'
+					   +'<span class="icon-comments"></span>'
+					   +'<span class="icon-like"></span>'
+					   +'</div>';
+		var data = {id:id,html:content};
+		prependBrick(data);
+	});
+	
+	
+}
+</script>
+</head>
+<body>
+<!-- side 
+---------------------------------------------------------------------------->
+<div class="leftSide">
+	<ul>
+		<li>
+			<div id="search">
+			  <input type="text" size="40" placeholder="Lingu 찾기" />
+			</div>
+		</li>
+		<li class="LB">
+			계정
+		</li>
+		<li class="LB" id="newLingu">
+			새 Lingu
+		</li>
+		<li class="LB">
+			도움말
+		</li>
+	</ul>
+</div>
+<div class="rightSide">
+	<ul>
+		<li style="background:#333;">
+			Push pins
+		</li>
+		<li class="RB">
+			<span><img src="images/som.png" style="width:20px"/>&nbsp;lingu01@lingu.kr</span>
+		</li>
+		<li class="RB">
+			<span><img src="images/som.png" style="width:20px"/>&nbsp;lingu01@lingu.kr</span>
+		</li>
+		<li class="RB">
+			<span><img src="images/som.png" style="width:20px"/>&nbsp;lingu01@lingu.kr</span>
+		</li>
+		<li class="RB">
+			<span><img src="images/som.png" style="width:20px"/>&nbsp;lingu01@lingu.kr</span>
+		</li>
+		<li class="RB">
+			<span><img src="images/som.png" style="width:20px"/>&nbsp;lingu01@lingu.kr</span>
+		</li>
+	</ul>
+</div>
+
+<!-- main 
+---------------------------------------------------------------------------->
+<div class="wrap">
+
+<!-- header 
+---------------------------------------------------------------------------->
+<div class="header">
+	<span class="leftBtn"></span><div class="leftBtnArea"></div>
+	<span class="logo">Lingu<img src="images/som.png"/></span>
+	<span class="rightBtn"></span><div class="rightBtnArea"></div>
+</div>
+
+
+<!-- sub main
+---------------------------------------------------------------------------->
+<div class="scrollArea">	
+	<br/>
+	<object  id="test" title="YouTube video player" class="youtube-player" type="text/html" width="100%" height="240" data="http://www.youtube.com/embed/yMqL1iWfku4?hd=1&showinfo=0&controls=0&autohide=0&rel=0&showsearch=0&theme=light" allowFullScreen></object>
+	
+	<!-- list
+	---------------------------------------------------------------------------->
+	<div class="masonry"></div>
+	
+	<!-- detail
+	---------------------------------------------------------------------------->
+	
+	<!-- account
+	---------------------------------------------------------------------------->
+	
+	<!-- post
+	---------------------------------------------------------------------------->
+	
+	<!-- help
+	---------------------------------------------------------------------------->
+</div>
+
+
+
+</div>
+</body>
+</html>

@@ -83,18 +83,21 @@ function appendBricksDummy()
 {
 
 		///////////임시//////////////
+			///////////임시//////////////
 		var select = Math.floor(Math.random() * 3) + 1;
 		var id = Math.floor(Math.random() * 100000) + 1;
 		var bh = Math.floor(Math.random() * 300) + 200;
 		var color = Math.floor(Math.random() * 900000) + 100000;
-		//bricks[bricks.length] = {id:id,html:'<div onclick="delBrick(\''+id+'\')" style="background:#'+color+'; height:'+bh+'px;">'+makeTextBrick()+'</div>'};
+	
+		var html = {id:id,html:'<div onclick="delBrick(\''+id+'\')" style="background:#'+color+'; height:'+bh+'px;"></div>'};
 		
-		if(select==1){bricks[bricks.length] = {id:id,html:'<div onclick="delBrick(\''+id+'\')">'+makeTextBrick()+'</div>'};}
-		if(select==2){bricks[bricks.length] = {id:id,html:'<div onclick="delBrick(\''+id+'\')">'+makeImageBrick()+'</div>'};}
-		if(select==3){bricks[bricks.length] = {id:id,html:'<div onclick="delBrick(\''+id+'\')">'+makeLinkBrick()+'</div>'};}
+		if(select==1){html = {id:id,html:'<div onclick="delBrick(\''+id+'\')">'+makeTextBrick()+'</div>'};}
+		if(select==2){html = {id:id,html:'<div onclick="delBrick(\''+id+'\')">'+makeImageBrick()+'</div>'};}
+		if(select==3){html = {id:id,html:'<div onclick="delBrick(\''+id+'\')">'+makeLinkBrick()+'</div>'};}
+		
 		/////////////////////////////
-
-		appendBrick();
+		//appendBrick(html);
+		prependBrick(html);
 }
 
 

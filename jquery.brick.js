@@ -24,8 +24,24 @@ var delay = (function(){
 
 function create(opt)
 {	
+
+	$('body').css('overflow-x','hidden');
+	$('body').css('overflow-y','scroll');
+	
+	////custom/////
+	var w = (Math.floor($(document).width()/250))*250;
+
+	$('.masonry').css('width',w+'px');
+	$('.masonry').css('margin','0 auto');
+	////custom/////
 	$(window).resize(function() {
 		delay(function(){
+		    ////custom/////
+			var w = (Math.floor($(document).width()/250))*250;
+	
+			$('.masonry').css('width',w+'px');
+			$('.masonry').css('margin','0 auto');
+		    ////custom/////
 			create({
 				width:opt.width
 				,column:opt.column
@@ -191,8 +207,103 @@ function brickAnalysis()
 	console.info(rows);
 	console.info('-------------------------');
 }
-function appendBrick()
+function prependBrick(html)
 {
+		bricks.unshift(html);
+		//벽돌 재분석
+		brickAnalysis();
+		
+		var last_row_index = rows.length-1;
+		var last_row = rows[rows.length-1];
+		var last_cloumn_index = last_row.length-1;
+		var last_brick_index = bricks.length-1;
+		
+		var bricks_html = '';
+		var row = rows[0];
+		var cloumn = row[0];
+
+		bricks_html = '<div id="'+cloumn+'" class="bricks"></div>';
+
+		if(row.length==nl)
+		{
+		bricks_html += '<div class="newline" style="clear:both;"></div>';
+		}
+
+		//벽돌 그리기(추가 된 것만)
+		$('.masonry').prepend(bricks_html);
+		//각 벽돌의 가로 사이즈 입력 및 필수 세팅
+		$('#'+cloumn).css('width',bws);
+		$('#'+cloumn).css('float','left');
+		$('#'+cloumn).css('position','relative');
+		$('#'+cloumn).css('opacity','0.0');
+
+		//var brick = bricks[last_brick_index];
+		var brick = bricks[0];
+		$('#'+brick.id).html(brick.html);
+
+		
+
+		//기존 줄 바꿈 삭제
+		console.info('기존 줄 바꿈 삭제');
+		$('.newline').remove();
+		
+		//화면에 로드된 이미지를 역으로 메모리로 올림
+		row = new Array();
+		rows = new Array();
+	
+		var row_index = 0;
+		var rows_index = 0;
+		$('.bricks').each(function(index) 
+		{ 
+			//각 벽돌의 아이디 값 추출
+			var id = $(this).attr('id');
+			//var id = $(bricks)[index].id;
+			row[row_index] = id;
+			row_index++;
+			//행을 배열로 만듦
+			if((index+1)%nl==0){
+				rows[rows_index] = row;
+				row = new Array();
+				row_index = 0;
+				rows_index++;
+			}
+		})
+		//남은 벽 돌은 모아서 행으로 추가 시킨다
+		if(row.length>0)
+		{
+			rows[rows.length] = row;
+		}
+		
+		console.info('새 줄바꿈 적용');
+		//새 줄 바꿈 적용
+		$(rows).each(function(rows_index)
+		{
+			var row = rows[rows_index];
+			//console.info(row);
+			$(row).each(function(row_index)
+			{
+				//수직 위치 초기화
+				$('#'+row[row_index]).css('top','0px');
+				if((row_index+1)%nl==0)
+				{
+					$('<div class="newline" style="clear:both;"></div>').insertAfter('#'+row[row_index]);
+				}
+			})
+	
+		})	
+		//재정렬(수직으로 빈 공간만큼 당기기)
+		relocation();
+
+		$('#'+cloumn).animate({
+			opacity: 1.0,
+		}, 200, function() {
+			// Animation complete.
+		});
+	
+}
+function appendBrick(html)
+{
+	bricks[bricks.length] = html;
 	//벽돌 재분석
 	brickAnalysis();
 
@@ -225,6 +336,7 @@ function appendBrick()
 	$('#'+cloumn).css('position','relative');
 	$('#'+cloumn).css('opacity','0.0');
 	
+	//var brick = bricks[last_brick_index];
 	var brick = bricks[last_brick_index];
 	$('#'+brick.id).html(brick.html);
 	
@@ -314,4 +426,5 @@ function delBrick(id)
 			}
 	});
 }
+
 
