@@ -27,44 +27,41 @@ function create(opt)
 
 	$('body').css('overflow-x','hidden');
 	$('body').css('overflow-y','scroll');
-	
-	////custom/////
-	var w = (Math.floor($(document).width()/250))*250;
-
-	$('.masonry').css('width',w+'px');
-	$('.masonry').css('margin','0 auto');
-	////custom/////
-	$(window).resize(function() {
-		delay(function(){
-		    ////custom/////
-			var w = (Math.floor($(document).width()/250))*250;
-	
-			$('.masonry').css('width',w+'px');
-			$('.masonry').css('margin','0 auto');
-		    ////custom/////
-			create({
-				width:opt.width
-				,column:opt.column
-			});
-		}, 100);
-	});
+		
 	console.info('----------시작------------');
 	//디스플레이 할 영역의 가로 사이즈 구하기
 	wws = $('.masonry').width();
-	
+
 	if(opt.column>0)
 	{
 		bws = wws/opt.column;
-	}else{
-		bws = opt.width>0?opt.width:100;
 	}
-	
+	else if(opt.width>0)
+	{
+		bws = opt.width;
+	}
 	
 	console.info('디스플레이 할 가로 사이즈 : '+wws);
 	
 	/////////
 	//디스플레이 할 영역의 가로 사이즈 안에 몇개의 벽돌을 놓을지 계산
 	nl = Math.floor(wws/bws);
+
+	////custom/////
+	//$('.masonry').css('width',(bws*nl)+'px');
+	//$('.masonry').css('margin','0 auto');
+	////custom/////
+	$(window).resize(function() {
+		delay(function(){
+			wws = $('.masonry').width();
+		    ////custom/////
+			create({
+				width:0
+				,column:wws<700?2:4
+			});	
+		}, 300);
+	});
+	
 	
 	//var masonry_width = nl*bws;
 	//$('.masonry').css('width', masonry_width);
@@ -295,7 +292,7 @@ function prependBrick(html)
 		relocation();
 
 		$('#'+cloumn).animate({
-			opacity: 1.0,
+		opacity: 1.0,
 		}, 200, function() {
 			// Animation complete.
 		});

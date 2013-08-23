@@ -12,7 +12,7 @@
 <script src="jquery.brick.js"></script>
 <script src="jquery.slide.js"></script>
 <style>
-html,body {margin:0px; padding:0px; background:#F4F4F4; overflow-y: scroll; overflow-x: hidden;  -webkit-text-size-adjust: none;}
+html,body {margin:0px; padding:0px; background:#444; overflow-y: scroll; overflow-x: hidden;  -webkit-text-size-adjust: none;}
 
 /* button 
 ---------------------------------------------- */
@@ -74,48 +74,90 @@ html,body {margin:0px; padding:0px; background:#F4F4F4; overflow-y: scroll; over
 
 /* layout 
 ---------------------------------------------- */
-.leftSide {overflow: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch;  display:none; float:left; position:absolute; top:0px; left:0px; width:200px; height:100%; z-index:7; background:#444;}
-.rightSide {overflow: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; display:none; float:left; position:absolute; top:0px; right:0px; width:200px; height:100%; z-index:8; background:#444;}
-.wrap {float:left; position:absolute; top:0px; left:0px; width:100%; z-index:9; -webkit-box-shadow: -10px 0 5px -5px #222, 10px 0px 5px -5px #222;}
+.leftSide {display:none; float:left; position:absolute; top:0px; left:0px; width:50px; height:100%; z-index:7; background:#444;}
+.rightSide {display:none; float:left; position:absolute; top:0px; right:0px; width:50px; height:100%; z-index:8; background:#444;}
+.wrap {float:left; position:absolute; top:0px; left:0px; width:100%; z-index:9; -webkit-box-shadow: -10px 0 5px -5px #222, 10px 0px 5px -5px #222;  background: #F4F4F4;}
 
 /* in wrap
 ---------------------------------------------- */
-.header { text-align:center; color:#fff; line-height: 40px; background: #0095cd; }
+.header { text-align:center; color:#fff; line-height: 40px; border: solid 1px #0088ff; background: #0088ff;  }
 /*.scrollArea { width: 100%; overflow: scroll; overflow-x: hidden; -webkit-overflow-scrolling: touch; background: #F4F4F4; }*/
-.scrollArea { width: 100%; height: 100%; background: #F4F4F4; }
+.scrollArea { width: 100%; background: #F4F4F4; }
 .footer { text-align:center; color:#999; line-height: 100px; font-size:9px; background: #ededed;}
 
 /* header button
 ---------------------------------------------- */
 /*.leftBtn:before { content: "";  position: absolute; top: 1em; left: 1.0em; width: 1em; height: 0.125em; border-top: 0.375em double #fff; border-bottom: 0.125em solid #fff;}*/
 /*.rightBtn:before { content: ""; position: absolute; top: 1em; right: 1.0em; width: 1em; height: 0.125em; border-top: 0.375em double #fff; border-bottom: 0.125em solid #fff;}*/
-.leftBtn { position: absolute; top: 0.75em; left: 1.0em; display:inline-block; width:16px; height:16px; background:url('images/icon/w/png/align_just_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
-.rightBtn { position: absolute; top: 0.75em; right: 1.0em; display:inline-block; width:16px; height:16px; background:url('images/icon/w/png/push_pin_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
-.leftBtnArea { position: absolute; top: 0em; left: 0em; width: 3em; height: 2.30em;}
-.rightBtnArea { position: absolute; top: 0em; right: 0em; width: 3em; height: 2.30em;}
+.leftBtnArea { position: absolute; top: 0em; left: 0em; width: 50px; height: 43px; border:1px solid #0088ff;}
+.rightBtnArea { position: absolute; top: 0em; right: 0em; width: 50px; height: 43px; border:1px solid #0088ff;}
 
 .logo {text-align:center; color:#fff; font-family: 'Fredoka One', cursive; font-size:25px; }
 .logo img {vertical-align:middle; width:30px; margin-left:10px;}
 
-/* slide menu
+/* slide side menu
 ---------------------------------------------- */
-ul{list-style:none; margin:0; padding:0; font-size:12px; font-family: 'Metrophobic', sans-serif;}
-ul li{color:#999; list-style:none; padding:10px; border-bottom:1px solid #000; border-top:1px solid #999;}
-ul li:hover{background-color:#333;color:#eee;}
+.side ul{list-style:none; margin:0; padding:0; font-size:12px; font-family: 'Metrophobic', sans-serif;}
+.side ul li{color:#999; list-style:none; padding:10px; border-bottom:1px solid #000; border-top:1px solid #999;}
+.side ul li:hover{background-color:#333;color:#eee;}
+
+
+/* footer site description
+---------------------------------------------- */
+.desc {background:#eee; border-top:1px solid #c7c7c7;}
+.desc p {color:#999; padding-top:10px; padding-bottom:10px; background:#eee; font-size:12px; font-family: 'Metrophobic', sans-serif; text-align:center; }
 
 /* icons
 ---------------------------------------------- */
-.icon-like {display:inline-block; width:16px; height:16px; background:url('images/icon-shot-like.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
-.icon-views {display:inline-block; width:16px; height:16px; background:url('images/icon-views.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
-.icon-shot-bucket {display:inline-block; width:16px; height:16px; background:url('images/icon-shot-bucket.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
-.icon-comments {display:inline-block; width:16px; height:16px; background:url('images/icon-comments.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-header-menu {position: absolute; top: 0.85em; left: 1.0em; display:inline-block; width:16px; height:16px; background:url('images/icon/w/png/align_just_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-header-bookmark {position: absolute; top: 0.85em; right: 1.0em; display:inline-block; width:16px; height:16px; background:url('images/icon/w/png/star_fav_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-header-export {position: absolute; top: 0.85em; right: 1.0em; display:inline-block; width:16px; height:16px; background:url('images/icon/w/png/export_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-clip {display:inline-block; width:16px; height:16px; background:url('images/icon/w/png/clip_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-user {display:inline-block; width:16px; height:16px; background:url('images/icon/w/png/user_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+
+.icon-delete {display:inline-block; width:16px; height:16px; background:url('images/icon/b/png/delete_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-views {display:inline-block; width:11px; height:11px; margin-top:0.25em; background:url('images/icon/icon-views-sm.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-likes {display:inline-block; width:10px; height:10px; margin-top:0.15em; background:url('images/icon/icon-hearts.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-comments {display:inline-block; width:10px; height:10px; margin-top:0.15em; background:url('images/icon/icon-comments.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-config {display:inline-block; width:16px; height:16px; background:url('images/icon/b/png/cog_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-photo {display:inline-block; width:16px; height:16px; margin-top:0em; margin-left:0.5em; background:url('images/icon/w/png/photo_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-movie {display:inline-block; width:16px; height:16px; margin-top:0em; margin-left:0.5em; background:url('images/icon/w/png/movie_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-link {display:inline-block; width:16px; height:16px; margin-top:0em; margin-left:0.5em; background:url('images/icon/w/png/link_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-facebook {display:inline-block; width:16px; height:16px; margin-top:0em; margin-left:0.5em; background:url('images/icon/w/png/facebook_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-twitter {display:inline-block; width:16px; height:16px; margin-top:0em; margin-left:0.5em; background:url('images/icon/w/png/twitter_2_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-kakao {display:inline-block; width:16px; height:16px; margin-top:0em; margin-left:0.5em; background:url('images/icon/w/png/kakao_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-email {display:inline-block; width:16px; height:16px; margin-top:0em; margin-left:0.5em; background:url('images/icon/w/png/mail_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-phone-message {display:inline-block; width:16px; height:16px; margin-top:0em; margin-left:0.5em; background:url('images/icon/w/png/chat_bubble_message_square_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+.icon-home {display:inline-block; width:16px; height:16px; margin-top:0em; margin-left:0.5em; background:url('images/icon/w/png/2x2_grid_icon&16.png') no-repeat scroll 0 0; background-size:100% auto; vertical-align:middle;}
+
 
 /* search
 ---------------------------------------------- */
 #search {}
-#search input[type="text"] {background: url(images/search-dark.png) no-repeat 10px 6px #444;border: 0 none;font: bold 12px Metrophobic, verdana, arial, sans-serif;color: #777;width: 120px;padding: 6px 15px 6px 35px;-webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset; /* -webkit-transition: all 0.7s ease 0s; -moz-transition: all 0.7s ease 0s;-o-transition: all 0.7s ease 0s;transition: all 0.7s ease 0s;*/}
+#search input[type="text"] {background: url(images/icon/search-white.png) no-repeat 10px 6px #444;border: 0 none;font: bold 12px Metrophobic, verdana, arial, sans-serif;color: #777;width: 120px;padding: 6px 15px 6px 35px;-webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset; /* -webkit-transition: all 0.7s ease 0s; -moz-transition: all 0.7s ease 0s;-o-transition: all 0.7s ease 0s;transition: all 0.7s ease 0s;*/}
 #search input[type="text"]:focus {/* width: 150px; */}
 
+/* notice
+---------------------------------------------- */
+.notice{font-size:9px; width: auto; margin-top: 0px; margin-left:10px; margin-right:10px; padding: 20px;text-align: center;background: rgba(0, 0, 0, 0.07);-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;border-top-left-radius: 0;border-top-right-radius: 0;}
+.notice_title {font-weight:bold;}
+.notice_content {}
+
+/* upload
+---------------------------------------------- */
+.upload {text-align:center; width:320px; margin:0 auto; display:none;}
+.upload input[type=text] {-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;margin-bottom: 10px;width: 280px;height: 20px;padding: 4px 10px;}
+.upload textarea {-webkit-box-shadow: none;-moz-box-shadow: none;box-shadow: none;resize: vertical;margin-bottom: 10px;height: 100px;width: 280px;padding: 10px 10px 4px 10px;}
+.imageLogo {margin: 10px; } .videoLogo {margin: 10px; } .urlLogo {margin: 10px; } 
+.thumb {height: 75px;border: 1px solid #000;margin: 10px 5px 0 0;}
+.files {width:0px; height:0px;}
+
+/* brickDeco
+---------------------------------------------- */
+.brickDeco {border:1px solid #c7c7c7; background:#fff; margin:2px; -webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);}
+.contentImage {padding-left:5px; padding-top:5px; padding-right:5px;}
+.statusBox {margin-right:5px; margin-bottom:5px; text-align:right;}
+.statusBoxCount {margin:3px; font: 9px Metrophobic, verdana, arial, sans-serif; color:#BBBBBB;}
 </style>
 <script>
 $(document).ready(function() 
@@ -136,13 +178,13 @@ var sleep = (function(){
 var isMobile = false;
 function initMasonry()
 {
-	$('.scrollArea').css('height',$(window).innerHeight());
+	$('.scrollArea').css('height',$(document).height());
 	$(window).resize(function() {
 		sleep(function(){
-			$('.scrollArea').css('height',$(window).innerHeight());
+			//$('.scrollArea').css('height',$(document).height()-45);
 		}, 100);
 	});	
-
+	
 	var mobileKeyWords = new Array('iPhone', 'iPod', 'BlackBerry', 'Android', 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson');
 	for (var word in mobileKeyWords){
 		if (navigator.userAgent.match(mobileKeyWords[word]) != null){
@@ -151,20 +193,14 @@ function initMasonry()
 		}
 	}
 
-	if(isMobile){
-		//최초 한번만 실행
-		create({
-			width:0
-			,column:2
-		});
-	}else{
-		var w = 250;
-		//최초 한번만 실행
-		create({
-			width:w
-			,column:0
-		});
-	}
+	wws = $('.masonry').width();
+	////custom/////
+	create({
+		width:0
+		,column:wws<700?2:4
+	});	
+	
+
 }
 
 function initButtons()
@@ -176,11 +212,10 @@ function initButtons()
 	$('.rightSide').bind('touchend',function(event){touchend(event);});
 	$('.wrap').bind('touchstart',function(event){touchstart(this, event);});
 	$('.wrap').bind('touchend',function(event){touchend(event);});
-	
 
 	$('.leftBtnArea').on('click',function() {
 		var curPos = $('.wrap').cssNumber('left');
-		var leftVal = 200;
+		var leftVal = 50;
 		if(curPos!=0){
 			leftVal=0;
 			$('.leftSide').unbind('touchmove.left');
@@ -192,17 +227,19 @@ function initButtons()
 			$('.wrap').bind('touchmove.leftWrap',function(event){touchmove(this,event);});
 		}
 		$('.rightSide').hide();
-		$('.wrap').animate({
-			left:leftVal
-		}, 300, function() {
+		$('.wrap').css('left',leftVal);
+		//$('.wrap').animate({
+		//	left:leftVal
+		//}, 300, function() {
 			if(curPos!=0){$('.leftSide').hide();}
 			else{$('.leftSide').show();}
-		});
+		//});
 	});
 	
 	$('.rightBtnArea').on('click',function() {
+		$('.rightSide').css('height',$(window).innerHeight());
 		var curPos = $('.wrap').cssNumber('left');
-		var rightVal = 200;
+		var rightVal = 50;
 		if(curPos!=0){
 			rightVal=0;
 			$('.rightSide').unbind('touchmove.right');
@@ -214,12 +251,13 @@ function initButtons()
 			$('.wrap').bind('touchmove.rightWrap',function(event){touchmove(this,event);});
 		}
 		$('.leftSide').hide();
-		$('.wrap').animate({
-			left:'-'+rightVal
-		}, 300, function() {
+		$('.wrap').css('left',Number('-'+rightVal));
+		//$('.wrap').animate({
+		//	left:'-'+rightVal
+		//}, 300, function() {
 			if(curPos!=0){$('.rightSide').hide();}
 			else{$('.rightSide').show();}
-		});
+		//});
 	});
 	
 	$('.LB').on('click',function() {
@@ -227,23 +265,31 @@ function initButtons()
 		$('.leftSide').unbind('touchmove.left');
 		$('.wrap').unbind('touchmove.leftWrap');
 		$('.rightSide').hide();
-		$('.wrap').animate({
-			left:leftVal
-		}, 300, function() {
+		$('.wrap').css('left',leftVal);
+		//$('.wrap').animate({
+		//	left:leftVal
+		//}, 300, function() {
 			$('.leftSide').hide();
-		});
+		//});
 	});
 	$('.RB').on('click',function() {
 		var rightVal=0;
 		$('.rightSide').unbind('touchmove.right');
 		$('.wrap').unbind('touchmove.rightWrap');
 		$('.leftSide').hide();
-		$('.wrap').animate({
-			left:'-'+rightVal
-		}, 300, function() {
+		$('.wrap').css('left',Number('-'+rightVal));
+		//$('.wrap').animate({
+		//	left:'-'+rightVal
+		//}, 300, function() {
 			$('.rightSide').hide();
-		});
+		//});
 	});
+	
+	$('#files').change(function(event){
+		handleFileSelect(event);
+	});
+	//document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
 }
 var stx = 0;
 var sty = 0;
@@ -279,61 +325,136 @@ function touchend(event)
 }
 function initFunctionButtons()
 {
-	$('#newLingu').on('click',function() {
-		var id = Math.floor(Math.random() * 100000) + 1;	
-	    var content = '<div onclick="delBrick(\''+id+'\')" style="height:200px;border:1px solid #eee; background:#fff; margin:2px;>'
-					   +'<span class="icon-views"></span>'
-					   +'<span class="icon-comments"></span>'
-					   +'<span class="icon-like"></span>'
+
+	$('#lingu').on('click',function() {
+		$('.masonry').show();
+		$('.upload').hide();
+		$('.image').hide();
+		$('.video').hide();
+		$('.url').hide();
+	
+	
+		var id = Math.floor(Math.random() * 100000) + 1;
+        var img = Math.floor(Math.random() * 10) + 1;		
+	    var content = '<div onclick="delBrick(\''+id+'\')" class="brickDeco">'
+					   +'<div class="contentImage"><img width="100%" src="images/'+img+'.jpg"/></div>'
+					   +'<div class="statusBox">'
+					   +'<span class="icon-views"></span><span class="statusBoxCount">9999</span>'
+					   +'<span class="icon-comments"></span><span class="statusBoxCount">9999</span>'
+					   +'<span class="icon-likes"></span><span class="statusBoxCount">9999</span>'
+					   +'</div>'
 					   +'</div>';
 		var data = {id:id,html:content};
 		prependBrick(data);
+		
+	});
+	$('#home').on('click',function() {
+		$('.masonry').show();
+		$('.upload').hide();
+		$('.image').hide();
+		$('.video').hide();
+		$('.url').hide();
+	});
+	$('#newLinguPhoto').on('click',function() {
+		$('.masonry').hide();
+		$('.upload').show();
+		$('.image').show();
+		$('.video').hide();
+		$('.url').hide();
+	});
+	$('#newLinguMovie').on('click',function() {
+		$('.masonry').hide();
+		$('.upload').show();
+		$('.image').hide();
+		$('.video').show();
+		$('.url').hide();
+	});
+	$('#newLinguLink').on('click',function() {
+		$('.masonry').hide();
+		$('.upload').show();
+		$('.image').hide();
+		$('.video').hide();
+		$('.url').show();
 	});
 	
-	
+	$('#picup').on('click',function() {
+		$('#files').click();
+	});
 }
+function handleFileSelect(evt) {
+
+    var files = evt.target.files; // FileList object
+
+   // Loop through the FileList and render image files as thumbnails.
+   for (var i = 0, f; f = files[i]; i++) {
+
+     // Only process image files.
+     if (!f.type.match('image.*')) {
+       continue;
+     }
+
+     var reader = new FileReader();
+
+     // Closure to capture the file information.
+     reader.onload = (function(theFile) {
+       return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('span');
+          span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                        '" title="', escape(theFile.name), '"/>'].join('');
+          document.getElementById('list').insertBefore(span, null);
+    };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+  }
+
+ 
+
 </script>
 </head>
 <body>
 <!-- side 
 ---------------------------------------------------------------------------->
-<div class="leftSide">
+<div class="side leftSide">
 	<ul>
-		<li>
+		<!--li>
 			<div id="search">
-			  <input type="text" size="40" placeholder="Lingu 찾기" />
+			  <input type="text" size="40" placeholder="Search..." />
 			</div>
+		</li-->
+		<li class="LB" id="home">
+			<span class="icon-home"></span>
 		</li>
-		<li class="LB">
-			계정
+		<li class="LB" id="newLinguPhoto">
+			<span class="icon-photo"></span>
 		</li>
-		<li class="LB" id="newLingu">
-			새 Lingu
+		<li class="LB" id="newLinguMovie">
+			<span class="icon-movie"></span>
 		</li>
-		<li class="LB">
-			도움말
+		<li class="LB" id="newLinguLink">
+			<span class="icon-link"></span>
 		</li>
 	</ul>
 </div>
-<div class="rightSide">
+<div class="side rightSide">
 	<ul>
-		<li style="background:#333;">
-			Push pins
+		<li class="RB" id="">
+			<span class="icon-facebook"></span>
 		</li>
-		<li class="RB">
-			<span><img src="images/som.png" style="width:20px"/>&nbsp;lingu01@lingu.kr</span>
+		<li class="RB" id="">
+			<span class="icon-twitter"></span>
 		</li>
-		<li class="RB">
-			<span><img src="images/som.png" style="width:20px"/>&nbsp;lingu01@lingu.kr</span>
+		<li class="RB" id="">
+			<span class="icon-kakao"></span>
 		</li>
-		<li class="RB">
-			<span><img src="images/som.png" style="width:20px"/>&nbsp;lingu01@lingu.kr</span>
+		<li class="RB" id="">
+			<span class="icon-email"></span>
 		</li>
-		<li class="RB">
-			<span><img src="images/som.png" style="width:20px"/>&nbsp;lingu01@lingu.kr</span>
-		</li>
-		<li class="RB">
-			<span><img src="images/som.png" style="width:20px"/>&nbsp;lingu01@lingu.kr</span>
+		<li class="RB" id="">
+			<span class="icon-phone-message"></span>
 		</li>
 	</ul>
 </div>
@@ -345,18 +466,20 @@ function initFunctionButtons()
 <!-- header 
 ---------------------------------------------------------------------------->
 <div class="header">
-	<span class="leftBtn"></span><div class="leftBtnArea"></div>
-	<span class="logo">Lingu<img src="images/som.png"/></span>
-	<span class="rightBtn"></span><div class="rightBtnArea"></div>
+	<em class="lhbtna"><span class="icon-header-menu"></span></em><div class="leftBtnArea"></div>
+	<span class="logo">Lingu<img src="images/icon/som.png"/></span>
+	<em class="rhbtna"><span class="icon-header-export"></span></em><div class="rightBtnArea"></div>
 </div>
 
 
 <!-- sub main
 ---------------------------------------------------------------------------->
 <div class="scrollArea">	
-	<br/>
-	<object  id="test" title="YouTube video player" class="youtube-player" type="text/html" width="100%" height="240" data="http://www.youtube.com/embed/yMqL1iWfku4?hd=1&showinfo=0&controls=0&autohide=0&rel=0&showsearch=0&theme=light" allowFullScreen></object>
-	
+	<!--div class="notice">
+		<p class="notice_title">불필요한 단계 없이 지금 바로 공유 하세요.</p>
+		<p class="notice_content">물론 가입하면, 더 많은 기능을 사용할 수 있습니다! 게다가 공짜!</p>
+		<p class="singup">가입하기</p>
+	</div-->
 	<!-- list
 	---------------------------------------------------------------------------->
 	<div class="masonry"></div>
@@ -367,13 +490,37 @@ function initFunctionButtons()
 	<!-- account
 	---------------------------------------------------------------------------->
 	
-	<!-- post
+	<!-- upload
 	---------------------------------------------------------------------------->
+	<div class="upload">
+		<div class="image imageLogo"><img src="images/icon/b/png/photo_icon&24.png"/></div>
+		<div class="video videoLogo"><img src="images/icon/b/png/movie_icon&24.png"/></div>
+		<div class="url urlLogo"><img src="images/icon/b/png/link_icon&24.png"/></div>
+		
+		<input type="text" placeholder="Title (optional)"/>
+		<textarea placeholder="Writing something..."></textarea>
+		
+		<input class="image files" type="file" id="files" name="files[]" multiple />
+		<input class="video" type="text" placeholder="Paste YouTube or Vimeo URL"/>
+		<input class="url" type="text" placeholder="http://"/>
+		
+		<div class="image button green large" id="picup">Picup</div>
+		<div class="button gray large">Cancel</div>
+		<div class="button blue large" id="lingu">Lingu</div>
+		
+		<output class="image" id="list"></output>
+	</div>
 	
-	<!-- help
+	<!-- site description
 	---------------------------------------------------------------------------->
 </div>
 
+<!--div class="desc">
+		<p>로그인</p>
+		<p>Lingu.kr</p>
+		<p>설정 도움말 의견</p>
+		<p>개인정보 보호 및 약관</p>
+</div-->
 
 
 </div>
