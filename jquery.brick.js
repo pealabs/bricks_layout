@@ -150,6 +150,13 @@ function correctionBricks(current_row, before_row, cbv){
 		//빈공간 값을 음수로 변환
 		var corrent_val = Number('-'+cbv[index]);
 		//위에서 추출한 값을 더해 적용 보정 함
+		
+		//에니메이트 적용을 하려고 하나 타이밍 문제 해결이 안되므로 보류
+		//$('#'+current_row[index]).animate({
+		//	top:(corrent_val+brt)+'px'
+		//}, 100, function() {
+			// Animation complete.
+		//});
 		$('#'+current_row[index]).css('top',(corrent_val+brt)+'px');
 	});
 }
@@ -288,14 +295,16 @@ function prependBrick(html)
 			})
 	
 		})	
-		//재정렬(수직으로 빈 공간만큼 당기기)
-		relocation();
+		
 
 		$('#'+cloumn).animate({
 		opacity: 1.0,
 		}, 200, function() {
 			// Animation complete.
+			//재정렬(수직으로 빈 공간만큼 당기기)
+			relocation();
 		});
+		
 	
 }
 function appendBrick(html)
